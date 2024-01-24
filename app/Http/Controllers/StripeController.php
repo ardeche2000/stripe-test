@@ -23,7 +23,7 @@ class StripeController extends Controller
                 "source" => $request->stripeToken,
                 "description" => "Test payment from msavoir" 
         ]);
-      
+      //ardeche
         Session::flash('success', 'Payment successful!');
               
         return back();

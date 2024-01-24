@@ -20,6 +20,7 @@ class StripeController extends Controller
             'csv'=>"required",
         ]);
         //dd($request->all());
+        //my request
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $data=Stripe\Charge::create ([
                 "amount" => 100 * 1,

@@ -3,33 +3,31 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Illuminate\Contracts\Session\Session;
+
 use Illuminate\Http\Request;
 use Stripe\Exception\CardException;
 use Stripe\StripeClient;
 use Stripe;
+use Session;
+
 
 
 class StripeController extends Controller
 {
     public function store(Request $request){
-        $request->validate([
-            'card_number'=>"required",
-            'date_expi'=>"required",
-            'year_expi'=>"required",
-            'csv'=>"required",
-        ]);
-        //dd($request->all());
-        //my request
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $data=Stripe\Charge::create ([
+    
+        Stripe\Charge::create ([
                 "amount" => 100 * 1,
-                "currency" => "EUR",
+                "currency" => "eur",
                 "source" => $request->stripeToken,
-                "description" => "Making test payment." 
+                "description" => "Test payment from msavoir" 
         ]);
-       
-        return back()->with('success', 'Payment has been successfully processed.');
+      
+        Session::flash('success', 'Payment successful!');
+              
+        return back();
+    
     }
     
 }

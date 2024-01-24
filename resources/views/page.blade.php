@@ -17,7 +17,7 @@
             <div class="col-md-8 ">
                 <div class="card">
                     <div class="card-header">
-                      <h5>Paiement avec stripe test</h5>
+                      <h5>Paiement avec stripe test[Vous serez débiter d'un montant de 1 euro]</h5>
                     </div>
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -66,7 +66,7 @@
   
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-danger btn-lg btn-block" type="submit">Payer 100 euros</button>
+                                <button class="btn btn-danger btn-lg btn-block" type="submit">Payer 1 euros</button>
                             </div>
                         </div>
                           

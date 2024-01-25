@@ -5,28 +5,29 @@ namespace App\Http\Controllers;
 use Exception;
 
 use Illuminate\Http\Request;
-use Stripe\Exception\CardException;
-use Stripe\StripeClient;
+use Illuminate\Support\Facades\Session;
 use Stripe;
-use Session;
+
 
 
 
 class StripeController extends Controller
 {
+   
+      /**
+     * success response method.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request){
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-    
         Stripe\Charge::create ([
-                "amount" => 100 * 1,
-                "currency" => "eur",
+                "amount" => 5 * 100,
+                "currency" => "usd",
                 "source" => $request->stripeToken,
-                "description" => "Test payment from msavoir" 
+                "description" => "Binaryboxtuts Payment Test"
         ]);
-      //ardeche
-        Session::flash('success', 'Payment successful!');
-              
-        return back();
+        return back()->with('success', 'Payment Successful!');
     
     }
     

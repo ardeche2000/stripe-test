@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('page');
 });
-Route::post('payment', [StripeController::class,'store'])->name('store');
+Route::post('/payment', [StripeController::class,'store'])->name('store');
 
 Auth::routes();
 

@@ -3,43 +3,43 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        @if (session('success'))
-                        <div 
-                            style="color: green;
-                                border: 2px green solid;
-                                text-align: center;
-                                padding: 5px;margin-bottom: 10px;">
-                            Payment Successful!
-                        </div>
+    
+    <div class="container mt-5">
+        <div class="row justify-content-around">
+            <div class="col-md-5 border">
+                  @if(session('error'))
+                            <div class="alert alert-danger mt-2">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                         @if(session('success'))
+                            <div class="alert alert-succes mt-2">
+                                {{ session('success') }}
+                            </div>
                         @endif
                         <form id='checkout-form' method='post' action="{{route('store')}}">   
                             @csrf             
                             <input type='hidden' name='stripeToken' id='stripe-token-id'>                              
-                            <label for="card-element" class="mb-5">Checkout Forms</label>
+                            <label for="card-element" class="mb-5 mt-3">Test de paiement avec les clés de production. Vous serez débité d'un montant de 1$.</label>
                             <br>
                             <div id="card-element" class="form-control" ></div>
                             <button 
                                 id='pay-btn'
-                                class="btn btn-success mt-3"
+                                class="btn btn-success mt-3 mb-4"
                                 type="button"
                                 style="margin-top: 20px; width: 100%;padding: 7px;"
-                                onclick="createToken()">PAY $5
+                                onclick="createToken()">PAYER 1$
                             </button>
                         <form>
-                    </div>
-                </div>
             </div>
-        </div>
+            
+       
     </div>
+   
  
     <script src="https://js.stripe.com/v3/"></script>
     <script>
